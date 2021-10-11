@@ -2,7 +2,7 @@ import React from 'react';
 
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
-import { singInWithGoogle } from '../../firebase/firebase.utils';
+import { singInWithGoogle, signInWithEmailAndPassword, auth } from '../../firebase/firebase.utils';
 
 import './sign-in.style.scss';
 
@@ -16,15 +16,20 @@ class SignIn extends React.Component{
         }
     }
 
-    handleSubmit = evt => {
+    handleSubmit = async evt => {
         evt.preventDefault();
+        const {email , password} = this.state;
+        try{
+            const {user} = await signInWithEmailAndPassword(auth, email, password);
 
+        }catch(error){
+            console.log("Something went wrong in sing-in ", error.message);
+        }
         this.setState({email: '', password: ''});
     }
 
     handleChange = evt => {
         const {value, name} = evt.target;
-        console.log(evt.target); 
         this.setState({[name]: value});
     }
 
