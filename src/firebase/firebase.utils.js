@@ -1,6 +1,6 @@
 import {initializeApp} from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore, doc, getDoc, setDoc, onSnapshot, collection, writeBatch } from 'firebase/firestore';
  
 const firebaseConfig = {
     apiKey: "AIzaSyCRMFFaETls_zC_YBcm9Af4NxXjWrsh2uU",
@@ -22,7 +22,6 @@ export const singInWithGoogle = () => signInWithPopup(auth, provider);
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if(!userAuth) return;
-    // console.log(gi)
     const docRef = doc(db, "users", userAuth.uid);
     const docSnap = await getDoc(docRef);
     if(!docSnap.exists()){
@@ -36,10 +35,36 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
                 ...additionalData
             })
         }catch(error){
-            console.log("Can't abe to add user object ", error.message);
+            console.log("Can't able to add user object ", error.message);
         }
     }
     return docRef;
 }
 
-export {onSnapshot, auth, createUserWithEmailAndPassword, db, signInWithEmailAndPassword};
+export const convertCollectionsSnapshortToMap = collections => {
+    const transformedCollection = collections.docs.map(doc => {
+        const {title, items} = doc.data();
+        return {
+            routeName: encodeURI(title.toLowerCase()),
+            id: doc.id,
+            title,
+            items
+        }
+    }); 
+    return transformedCollection.reduce((accumulator, collection) => {
+        accumulator[collection.title.toLowerCase()] = collection;
+        return accumulator;
+    }, {});
+}
+
+export const addCollectionAndItems = async (collectionKey, objectsToAdd) => {
+    const collectionRef = collection(db, collectionKey);
+    const batch = writeBatch(db);
+    objectsToAdd.forEach(obj => {
+        const newDocRef = doc(collectionRef);
+        batch.set(newDocRef, obj);
+    })
+    await batch.commit();
+}
+
+export {onSnapshot, auth, createUserWithEmailAndPassword, db, signInWithEmailAndPassword, onAuthStateChanged};

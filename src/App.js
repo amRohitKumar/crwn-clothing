@@ -9,7 +9,7 @@ import HomePage from './pages/homepage/homepage.components';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
-import { auth, createUserProfileDocument, onSnapshot } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument, onSnapshot, onAuthStateChanged } from './firebase/firebase.utils';
 import CheckoutPage from './pages/checkout/checkout.component';
 
 import { setCurrentUser } from './redux/user/user.action';
@@ -19,7 +19,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
-    this.subscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    this.unsubscribeFromAuth = onAuthStateChanged(auth ,async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
@@ -66,7 +66,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 })
 
 const mapDispatchToProps = dispatch => ({
