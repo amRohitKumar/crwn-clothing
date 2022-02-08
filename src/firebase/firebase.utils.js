@@ -16,9 +16,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({prompt: 'select_account'});
-export const singInWithGoogle = () => signInWithPopup(auth, provider);
+export const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({prompt: 'select_account'});
+export const singInWithGoogle = () => signInWithPopup(auth, googleProvider);
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if(!userAuth) return;
@@ -39,6 +39,18 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         }
     }
     return docRef;
+}
+
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = onAuthStateChanged(auth, userAuth => {
+            resolve(userAuth); // if there is a user promise will resolve with userObject else with a null value . SEE DOCS
+        }, err => {
+            reject(err);
+        }, () => {
+            unsubscribe();
+        }); 
+    })
 }
 
 export const convertCollectionsSnapshortToMap = collections => {
@@ -67,4 +79,4 @@ export const addCollectionAndItems = async (collectionKey, objectsToAdd) => {
     await batch.commit();
 }
 
-export {onSnapshot, auth, createUserWithEmailAndPassword, db, signInWithEmailAndPassword, onAuthStateChanged};
+export {onSnapshot, auth, createUserWithEmailAndPassword, db, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup};

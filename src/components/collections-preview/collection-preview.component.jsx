@@ -1,5 +1,5 @@
 import React from "react";
-
+import { withRouter } from "react-router-dom";
 import CollectionItem from "../collection-item/collection-item.component";
 
 import './collection-preview.style.scss';
@@ -19,4 +19,4 @@ const CollectionPreview = ({title, items, match, history, routeName}) => (
     </div>
 )
 
-export default CollectionPreview;
+export default withRouter(CollectionPreview);
