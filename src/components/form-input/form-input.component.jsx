@@ -2,7 +2,7 @@ import React from "react";
 
 
 
-import './form-input.style.scss';
+import './form-input.style.css';
 
 
 

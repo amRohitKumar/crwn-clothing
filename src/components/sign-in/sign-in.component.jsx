@@ -5,7 +5,7 @@ import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import { googleSignInStart, emailSignInStart } from '../../redux/user/user.action';
 
-import './sign-in.style.scss';
+import './sign-in.style.css';
 
 
 const SignIn = ({emailSignInStart, googleSignInStart}) => {

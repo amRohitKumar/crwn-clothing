@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import CollectionItem from "../collection-item/collection-item.component";
 
-import './collection-preview.style.scss';
+import './collection-preview.style.css';
 
 const CollectionPreview = ({title, items, match, history, routeName}) => (
     <div className='collection-preview'>
