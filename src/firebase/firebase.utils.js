@@ -3,12 +3,12 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPas
 import { getFirestore, doc, getDoc, setDoc, onSnapshot, collection, writeBatch } from 'firebase/firestore';
  
 const firebaseConfig = {
-    apiKey: "AIzaSyCRMFFaETls_zC_YBcm9Af4NxXjWrsh2uU",
+    apiKey: process.env.API_KEY,
     authDomain: "crwn-clothing-306ab.firebaseapp.com",
     projectId: "crwn-clothing-306ab",
     storageBucket: "crwn-clothing-306ab.appspot.com",
     messagingSenderId: "19362077410",
-    appId: "1:19362077410:web:48a52a9d027ccfbd86dcbb"
+    appId: process.env.API_ID,
 };
 
 
