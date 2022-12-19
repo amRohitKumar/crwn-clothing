@@ -132,15 +132,15 @@ _Below is an example of how you can instruct your audience on installing and set
 _Screenshots_
 
 <p align="middle">
-<img src="https://crwn-cloths.netlify.app/static/images/home-page.png" alt="website-landing-page" width="45%" height="250"> 
+<img src="https://crwn-cloths.netlify.app/static/images/home-page.png" alt="website-landing-page" width="45%" height="225"> 
 &nbsp; &nbsp; &nbsp; &nbsp;
-<img src="https://crwn-cloths.netlify.app/static/images/produc-page.png" alt="product-page" width="45%" height="250"> 
+<img src="https://crwn-cloths.netlify.app/static/images/produc-page.png" alt="product-page" width="45%" height="225"> 
 </p>
 
 <p align="middle">
-<img src="https://crwn-cloths.netlify.app/static/images/auth-page.png" alt="auth-page" width="45%" height="250"> 
+<img src="https://crwn-cloths.netlify.app/static/images/auth-page.png" alt="auth-page" width="45%" height="225"> 
 &nbsp; &nbsp; &nbsp; &nbsp;
-<img src="https://crwn-cloths.netlify.app/static/images/checkout-page.png" alt="checkout-page" width="45%" height="250"> 
+<img src="https://crwn-cloths.netlify.app/static/images/checkout-page.png" alt="checkout-page" width="45%" height="225"> 
 </p>
 
 <br>
@@ -170,7 +170,7 @@ Don't forget to give the project a star! Thanks again!
 
 Rohit Kumar - [Rohit Kumar](https://www.linkedin.com/in/rohit-kumar-8ba1241bb/) - 20je0808@me.iitism.ac.in
 
-Project Link: [https://github.com/amRohitKumar/jobster](https://github.com/amRohitKumar/crwn-clothing)
+Project Link: [https://github.com/amRohitKumar/crwn-clothing](https://github.com/amRohitKumar/crwn-clothing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
